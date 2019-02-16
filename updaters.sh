@@ -12,7 +12,9 @@ function updaters_menu
 printf "\n${MAGENTA}Update Menu${NC}\n\n"
  option=0
  until [ "$option" = "x" ]; do
- echo "  1.) apt (Debian/Ubuntu)"
+ echo "  1a.) apt upgrade (Debian/Ubuntu)"
+ echo "  1b.) apt dist-upgrade (Debian/Ubuntu)"
+ echo "  1c.) apt autoremove (Debian/Ubuntu)"
  echo "  2.) dnf (Fedora)"
  echo "  3.) yum (RHEL/CentOS)"
  echo "  4.) pacman (Arch/Manjaro)"
@@ -28,7 +30,9 @@ printf "\n${MAGENTA}Update Menu${NC}\n\n"
  read option
  echo ""
  case $option in
- 1 ) sudo apt update && sudo apt upgrade; printf "\n\n\n";;
+ 1a ) sudo apt update && sudo apt upgrade; printf "\n\n\n";;
+ 1b ) sudo apt update && sudo apt dist-upgrade; printf "\n\n\n";;
+ 1c ) sudo apt update && sudo apt autoremove; printf "\n\n\n";;
  2 ) sudo dnf check-update; sudo dnf update; printf "\n\n\n";;
  3 ) sudo yum update; printf "\n\n\n";;
  4 ) sudo pacman -Syyuu; printf "\n\n\n";;
