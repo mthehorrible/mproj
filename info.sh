@@ -8,14 +8,14 @@ MAGENTA='\033[1;35m'
 NC='\033[0m' # No Color
 
 function dns_tst {
-printf "\nCloudFlare: ${CYAN}1.1.1.1 ${NC}&${CYAN} 1.0.0.1${NC}"
-printf "\nGoogle: ${CYAN}8.8.8.8 ${NC}&${CYAN} 8.8.4.4${NC}"
-printf "\nQuad9: ${CYAN}9.9.9.9 ${NC}&${CYAN} 149.112.112.112${NC}"
-printf "\nOpenDNS: ${CYAN}208.67.222.222 ${NC}&${CYAN} 208.67.220.220${NC}"
-printf "\nLevel3: ${CYAN}209.244.0.3 ${NC}&${CYAN} 209.244.0.4${NC}"
-printf "${MAGENTA}\n\n"
-fping -e 1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4 9.9.9.9 149.112.112.112 208.67.222.222 208.67.220.220 209.244.0.3 209.244.0.4
-printf "${NC}\n\n"
+    printf "\nCloudFlare: ${CYAN}1.1.1.1 ${NC}&${CYAN} 1.0.0.1${NC}"
+    printf "\nGoogle: ${CYAN}8.8.8.8 ${NC}&${CYAN} 8.8.4.4${NC}"
+    printf "\nQuad9: ${CYAN}9.9.9.9 ${NC}&${CYAN} 149.112.112.112${NC}"
+    printf "\nOpenDNS: ${CYAN}208.67.222.222 ${NC}&${CYAN} 208.67.220.220${NC}"
+    printf "\nLevel3: ${CYAN}209.244.0.3 ${NC}&${CYAN} 209.244.0.4${NC}"
+    printf "${MAGENTA}\n\n"
+    fping -e 1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4 9.9.9.9 149.112.112.112 208.67.222.222 208.67.220.220 209.244.0.3 209.244.0.4
+    printf "${NC}\n\n"
 }
 function info_menu {
  printf "\n${MAGENTA}Info Menu${NC}\n\n"
@@ -32,6 +32,7 @@ function info_menu {
  echo "  6b.) System Info (neofetch)"
  echo "  7.) htop"
  echo "  8.) DNS list & test"
+ echo "  9.) Get Battery Info"
  echo "  m.) Main Menu"
  echo "  x.) Quit"
 
@@ -50,6 +51,12 @@ function info_menu {
  6b ) clear; neofetch; printf "\n\n\n";;
  7 ) clear; htop;;
  8 ) clear; dns_tst;;
+ 9 ) clear; 
+        upower -e;
+        printf "\n${MAGENTA}Enter device to check:${NC}\n\n";
+        read BATTERY;
+        upower -i /org/freedesktop/UPower/devices/$BATTERY;
+        printf "\n\n\n";;
  m ) clear; ./mproj.sh; exit;;
  x ) clear; exit;;
  * ) printf "${RED}Please enter a valid number${NC}\n\n";; 

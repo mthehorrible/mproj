@@ -130,6 +130,8 @@ function webbrowser_menu {
  echo "  1a.) Install Firefox (Debian 9)"
  echo "  1b.) Install Firefox (Ubuntu 18.04)"
  echo "  1c.) Install Firefox (CentOS 7)"
+ echo "  2.) Install Chromium (Snap)"
+ echo "  3.) Install Falkon (Snap)"
  echo "  m.) Main installers menu"
  echo "  x.) Quit"
 
@@ -140,6 +142,35 @@ function webbrowser_menu {
  1a ) sudo apt update; sudo apt -y install firefox-esr; printf "\n\n";;
  1b ) sudo apt update; sudo apt -y install firefox; printf "\n\n";;
  1c ) sudo yum install firefox; printf "\n\n";;
+ 2 ) sudo snap install chromium; printf "\n\n";;
+ 3 ) sudo snap install falkon --edge; printf "\n\n";;
+ m ) clear; installers_menu;;
+ x ) clear; exit;;
+ * ) printf "${RED}Please enter a valid number${NC}\n\n";; 
+ esac
+ done
+}
+function audiovideo_menu {
+ printf "\n${MAGENTA}Audio/Video Menu${NC}\n\n"
+ option=0
+ until [ "$option" = "x" ]; do
+ echo "  1a.) Install VLC (snap)"
+ echo "  1b.) Install VLC (Debian 9, Ubuntu 18.04)"
+ echo "  2.) Install ffmpeg (Debian 9, Ubuntu 18.04)"
+ echo "  3a.) Install youtube-dl (All)"
+ echo "  3b.) Update youtube-dl (All)"
+ echo "  m.) Main installers menu"
+ echo "  x.) Quit"
+
+ printf "\n${MAGENTA}Enter choice:${NC}\n\n"
+ read option
+ echo ""
+ case $option in
+ 1a ) sudo snap install vlc; printf "\n\n";;
+ 1b ) sudo apt update; sudo apt -y install vlc; printf "\n\n";;
+ 2 ) sudo apt update; sudo apt -y install ffmpeg; printf "\n\n";;
+ 3a ) sudo wget https://yt-dl.org/latest/youtube-dl -O /usr/local/bin/youtube-dl; sudo chmod a+x /usr/local/bin/youtube-dl; printf "\n\n";;
+ 3b ) sudo youtube-dl -U; printf "\n\n";;
  m ) clear; installers_menu;;
  x ) clear; exit;;
  * ) printf "${RED}Please enter a valid number${NC}\n\n";; 
@@ -152,6 +183,8 @@ function systemtools_menu {
  until [ "$option" = "x" ]; do
  echo "  1a.) Install gparted (Debian 9, Ubuntu 18.04)"
  echo "  1b.) Install gparted (CentOS 7)"
+ echo "  2a.) Install OpenSSH server (Debian 9, Ubuntu 18.04)"
+ echo "  2b.) Install OpenSSH server (Arch)"
  echo "  m.) Main installers menu"
  echo "  x.) Quit"
 
@@ -161,6 +194,8 @@ function systemtools_menu {
  case $option in
  1a ) sudo apt update; sudo apt -y install gparted; printf "\n\n";;
  1b ) sudo yum install gparted; printf "\n\n";;
+ 2a ) sudo apt update; sudo apt -y install openssh-server; printf "\n\n";;
+ 2b ) sudo pacman install openssh; sudo systemctl start sshd.service; sudo systemctl enable sshd.service; printf "\n\n";;
  m ) clear; installers_menu;;
  x ) clear; exit;;
  * ) printf "${RED}Please enter a valid number${NC}\n\n";; 
@@ -234,9 +269,10 @@ function installers_menu {
  echo "  3). Text Editors"
  echo "  4). File Managers"
  echo "  5). Web Browsers"
- echo "  6). System Tools"
- echo "  7). Command Line Utilities"
- echo "  8). Development Tools"
+ echo "  6). Audio/Video"
+ echo "  7). System Tools"
+ echo "  8). Command Line Utilities"
+ echo "  9). Development Tools"
  echo "  m.) Main Menu"
  echo "  x.) Quit"
  
@@ -249,9 +285,10 @@ function installers_menu {
  3 ) clear; texted_menu;;
  4 ) clear; fileman_menu;;
  5 ) clear; webbrowser_menu;;
- 6 ) clear; systemtools_menu;;
- 7 ) clear; cliutils_menu;;
- 8 ) clear; dev_menu;;
+ 6 ) clear; audiovideo_menu;;
+ 7 ) clear; systemtools_menu;;
+ 8 ) clear; cliutils_menu;;
+ 9 ) clear; dev_menu;;
  m ) clear; ./mproj.sh; exit;;
  x ) clear; exit;;
  * ) printf "${RED}Please enter a valid number${NC}\n\n";; 
