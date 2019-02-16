@@ -247,6 +247,8 @@ function dev_menu {
  until [ "$option" = "x" ]; do
  echo "  1a.) Install Git (Debian, Ubuntu)"
  echo "  1b.) Install Git (Fedora)"
+ echo "  2a.) Install Git-All (Debian, Ubuntu)"
+ echo "  2b.) Install Git-All (Fedora)"
  echo "  2.) Visual Code Studio (Snap)"
  echo "  m.) Main installers menu"
  echo "  x.) Quit"
@@ -255,8 +257,10 @@ function dev_menu {
  read option
  echo ""
  case $option in
- 1a ) sudo apt install git-all; printf "\n\n";;
- 1b ) sudo dnf install git-all; printf "\n\n";;
+ 1a ) sudo apt install git; printf "\n\n";;
+ 1b ) sudo dnf install git; printf "\n\n";;
+ 2a ) sudo apt install git-all; printf "\n\n";;
+ 2b ) sudo dnf install git-all; printf "\n\n";;
  2 ) sudo snap install vscode --classic; printf "\n\n";;
  m ) clear; installers_menu;;
  x ) clear; exit;;
@@ -268,15 +272,15 @@ function installers_menu {
  printf "\n${MAGENTA}Installers Menu${NC}\n\n"
  option=0
  until [ "$option" = "x" ]; do
- echo "  1). Window Managers"
- echo "  2). Terminal Emulators"
- echo "  3). Text Editors"
- echo "  4). File Managers"
- echo "  5). Web Browsers"
- echo "  6). Audio/Video"
- echo "  7). System Tools"
- echo "  8). Command Line Utilities"
- echo "  9). Development Tools"
+ echo "  1.) Window Managers"
+ echo "  2.) Terminal Emulators"
+ echo "  3.) Text Editors"
+ echo "  4.) File Managers"
+ echo "  5.) Web Browsers"
+ echo "  6.) Audio/Video"
+ echo "  7.) System Tools"
+ echo "  8.) Command Line Utilities"
+ echo "  9.) Development Tools"
  echo "  m.) Main Menu"
  echo "  x.) Quit"
  
