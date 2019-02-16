@@ -13,13 +13,15 @@ printf "\n${MAGENTA}mproj scripts${NC}\n\n"
 option=0
 until [ "$option" = "x" ]; do
 echo "  1.) Installers Menu"
+echo "  2.) Updaters Menu"
 echo "  x.) Quit"
 
 printf "\n${MAGENTA}Enter choice:${NC}\n\n"
 read option
 echo ""
 case $option in
-    1 ) clear; ~/Seafile/Shared/scripts/installers.sh; exit;;
+    1 ) clear; ./installers.sh; exit;;
+    2 ) clear; ./updaters.sh; exit;;
     x ) clear; exit;;
     * ) printf "${RED}Please enter a valid number${NC}\n\n";; 
 esac

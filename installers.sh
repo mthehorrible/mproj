@@ -229,15 +229,16 @@ function installers_menu {
  printf "\n${MAGENTA}Installers Menu${NC}\n\n"
  option=0
  until [ "$option" = "x" ]; do
- echo "  1).  Window Managers"
- echo "  2).  Terminal Emulators"
- echo "  3).  Text Editors"
- echo "  4).  File Managers"
- echo "  5).  Web Browsers"
- echo "  6).  System Tools"
- echo "  7).  Command Line Utilities"
- echo "  8).  Development Tools"
- echo "  x.)  Quit"
+ echo "  1). Window Managers"
+ echo "  2). Terminal Emulators"
+ echo "  3). Text Editors"
+ echo "  4). File Managers"
+ echo "  5). Web Browsers"
+ echo "  6). System Tools"
+ echo "  7). Command Line Utilities"
+ echo "  8). Development Tools"
+ echo "  m.) Main Menu"
+ echo "  x.) Quit"
  
  printf "\n${MAGENTA}Enter choice:${NC}\n\n"
  read option
@@ -251,6 +252,7 @@ function installers_menu {
  6 ) clear; systemtools_menu;;
  7 ) clear; cliutils_menu;;
  8 ) clear; dev_menu;;
+ m ) clear; ./mproj.sh; exit;;
  x ) clear; exit;;
  * ) printf "${RED}Please enter a valid number${NC}\n\n";; 
  esac
