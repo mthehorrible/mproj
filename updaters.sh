@@ -7,8 +7,7 @@ YELLOW='\033[1;33m'
 MAGENTA='\033[1;35m'
 NC='\033[0m' # No Color
 
-function updaters_menu
-{
+function updaters_menu {
 printf "\n${MAGENTA}Update Menu${NC}\n\n"
  option=0
  until [ "$option" = "x" ]; do
