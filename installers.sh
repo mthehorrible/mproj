@@ -40,6 +40,7 @@ function terminal_emulators_menu {
  until [ "$option" = "x" ]; do
  echo "  1.) Install lxterminal (Debian 9, Ubuntu 18.04)"
  echo "  2.) Install terminator (Debian 9, Ubuntu 18.04)"
+ echo "  3.) Install guake (Debian 9, Ubuntu 18.04)"
  echo "  m.) Main installers menu"
  echo "  x.) Quit"
  
@@ -59,6 +60,7 @@ function terminal_emulators_menu {
         mkdir -p ~/.config/terminator;
         cp ./settings/terminator-config ~/.config/terminator/config;
         printf "\n\n";;
+ 3 ) sudo apt update; sudo apt install guake; printf "\n\n";;
  m ) clear; installers_menu;;
  x ) clear; exit;;
  * ) printf "${RED}Please enter a valid number${NC}\n\n";; 
@@ -159,6 +161,7 @@ function audiovideo_menu {
  echo "  2.) Install ffmpeg (Debian 9, Ubuntu 18.04)"
  echo "  3a.) Install youtube-dl (All)"
  echo "  3b.) Update youtube-dl (All)"
+ echo "  4.) Install mp3wrap (Debian 9, Ubuntu 18.04)"
  echo "  m.) Main installers menu"
  echo "  x.) Quit"
 
@@ -171,6 +174,7 @@ function audiovideo_menu {
  2 ) sudo apt update; sudo apt -y install ffmpeg; printf "\n\n";;
  3a ) sudo wget https://yt-dl.org/latest/youtube-dl -O /usr/local/bin/youtube-dl; sudo chmod a+x /usr/local/bin/youtube-dl; printf "\n\n";;
  3b ) sudo youtube-dl -U; printf "\n\n";;
+ 4 ) sudo apt update; sudo apt -y install mp3wrap; printf "\n\n";;
  m ) clear; installers_menu;;
  x ) clear; exit;;
  * ) printf "${RED}Please enter a valid number${NC}\n\n";; 
