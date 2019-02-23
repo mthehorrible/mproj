@@ -61,7 +61,7 @@ function terminal_emulators_menu {
         mkdir -p ~/.config/terminator;
         cp ./settings/terminator-config ~/.config/terminator/config;
         printf "\n\n";;
- 2b ) sudo apt update; sudo yum -y install terminator;
+ 2b ) sudo yum -y install terminator;
         printf "\n ${CYAN}Setting terminator settings${NC} \n";
         mkdir -p ~/.config;
         mkdir -p ~/.config/terminator;
@@ -122,14 +122,14 @@ function fileman_menu {
  read option
  echo ""
  case $option in
- 1a ) sudo apt update; sudo apt -y install thunar;
+ 1a ) sudo apt update; sudo apt -y install thunar gvfs-backends;
     mkdir -p ~/.config;
     mkdir -p ~/.config/xfce4;
     mkdir -p ~/.config/xfce4/xfconf;
     mkdir -p ~/.config/xfce4/xfconf/xfce-perchannel-xml;
     cp ./settings/thunar.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml;
     printf "\n\n";;
- 1b ) sudo yum -y install thunar;
+ 1b ) sudo yum -y install thunar gvfs-client gvfs-smb gvfs-fuse;
     mkdir -p ~/.config;
     mkdir -p ~/.config/xfce4;
     mkdir -p ~/.config/xfce4/xfconf;
@@ -206,6 +206,8 @@ function systemtools_menu {
  echo "  1b.) Install gparted (CentOS 7)"
  echo "  2a.) Install OpenSSH server (Debian 9, Ubuntu 18.04)"
  echo "  2b.) Install OpenSSH server (Arch)"
+ echo "  3a.) Install hardinfo (Debian 9, Ubuntu 18.04)"
+ echo "  3b.) Install hardinfo (CentOS 7)"
  echo "  m.) Main installers menu"
  echo "  x.) Quit"
 
@@ -214,9 +216,11 @@ function systemtools_menu {
  echo ""
  case $option in
  1a ) sudo apt update; sudo apt -y install gparted; printf "\n\n";;
- 1b ) sudo yum install gparted; printf "\n\n";;
+ 1b ) sudo yum -y install gparted; printf "\n\n";;
  2a ) sudo apt update; sudo apt -y install openssh-server; printf "\n\n";;
  2b ) sudo pacman install openssh; sudo systemctl start sshd.service; sudo systemctl enable sshd.service; printf "\n\n";;
+ 3a ) sudo apt update; sudo apt -y install hardinfo; printf "\n\n";;
+ 3b ) sudo yum -y install hardinfo; printf "\n\n";;
  m ) clear; installers_menu;;
  x ) clear; exit;;
  * ) printf "${RED}Please enter a valid number${NC}\n\n";; 
