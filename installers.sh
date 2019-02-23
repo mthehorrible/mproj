@@ -39,7 +39,8 @@ function terminal_emulators_menu {
  option=0
  until [ "$option" = "x" ]; do
  echo "  1.) Install lxterminal (Debian 9, Ubuntu 18.04)"
- echo "  2.) Install terminator (Debian 9, Ubuntu 18.04)"
+ echo "  2a.) Install terminator (Debian 9, Ubuntu 18.04)"
+ echo "  2b.) Install terminator (CentOS 7)"
  echo "  3.) Install guake (Debian 9, Ubuntu 18.04)"
  echo "  m.) Main installers menu"
  echo "  x.) Quit"
@@ -48,19 +49,25 @@ function terminal_emulators_menu {
  read option
  echo ""
  case $option in
- 1 ) sudo apt update; sudo apt install lxterminal; 
+ 1 ) sudo apt update; sudo apt -y install lxterminal; 
         printf "\n ${CYAN}Setting lxterminal settings${NC} \n";
         mkdir -p ~/.config;
         mkdir -p ~/.config/lxterminal;
         cp ./settings/lxterminal.conf ~/.config/lxterminal/lxterminal.conf;
         printf "\n\n";;
- 2 ) sudo apt update; sudo apt install terminator;
+ 2a ) sudo apt update; sudo apt -y install terminator;
         printf "\n ${CYAN}Setting terminator settings${NC} \n";
         mkdir -p ~/.config;
         mkdir -p ~/.config/terminator;
         cp ./settings/terminator-config ~/.config/terminator/config;
         printf "\n\n";;
- 3 ) sudo apt update; sudo apt install guake; printf "\n\n";;
+ 2b ) sudo apt update; sudo yum -y install terminator;
+        printf "\n ${CYAN}Setting terminator settings${NC} \n";
+        mkdir -p ~/.config;
+        mkdir -p ~/.config/terminator;
+        cp ./settings/terminator-config ~/.config/terminator/config;
+        printf "\n\n";;
+ 3 ) sudo apt update; sudo apt -y install guake; printf "\n\n";;
  m ) clear; installers_menu;;
  x ) clear; exit;;
  * ) printf "${RED}Please enter a valid number${NC}\n\n";; 
@@ -75,6 +82,7 @@ function texted_menu {
  echo "  2.) Install Mousepad (CentOS 7)"
  echo "  3a.) Install Zim Wiki (Debian 9, Ubuntu 18.04)"
  echo "  3a.) Install Zim Wiki (CentOS 7 EPEL)"
+ echo "  4.) Install Geany (CentOS 7)"
  echo "  m.) Main installers menu"
  echo "  x.) Quit"
 
@@ -87,13 +95,14 @@ function texted_menu {
     mkdir -p ~/.config/leafpad;
     cp ./settings/leafpadrc ~/.config/leafpad/leafpadrc;
     printf "\n\n";;
- 2 ) sudo yum install mousepad; printf "\n\n";;
- 3a ) sudo apt update; sudo apt install zim; printf "\n\n";;
- 3b ) sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm;
+ 2 ) sudo yum -y install mousepad; printf "\n\n";;
+ 3a ) sudo apt update; sudo apt -y install zim; printf "\n\n";;
+ 3b ) sudo yum -y install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm;
     sudo yum -y install epel-release; sudo rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm;
     yum repolist;
     sudo yum install Zim;
     printf "\n\n";;
+ 4 ) sudo yum -y install geany; printf "\n\n";;
  m ) clear; installers_menu;;
  x ) clear; exit;;
  * ) printf "${RED}Please enter a valid number${NC}\n\n";; 
@@ -104,7 +113,8 @@ function fileman_menu {
  printf "\n${MAGENTA}File Managers Menu${NC}\n\n"
  option=0
  until [ "$option" = "x" ]; do
- echo "  1.) Install Thunar (Debian 9, Ubuntu 18.04)"
+ echo "  1a.) Install Thunar (Debian 9, Ubuntu 18.04)"
+ echo "  1b.) Install Thunar (CentOS 7)"
  echo "  m.) Main installers menu"
  echo "  x.) Quit"
 
@@ -112,7 +122,14 @@ function fileman_menu {
  read option
  echo ""
  case $option in
- 1 ) sudo apt update; sudo apt -y install thunar;
+ 1a ) sudo apt update; sudo apt -y install thunar;
+    mkdir -p ~/.config;
+    mkdir -p ~/.config/xfce4;
+    mkdir -p ~/.config/xfce4/xfconf;
+    mkdir -p ~/.config/xfce4/xfconf/xfce-perchannel-xml;
+    cp ./settings/thunar.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml;
+    printf "\n\n";;
+ 1b ) sudo yum -y install thunar;
     mkdir -p ~/.config;
     mkdir -p ~/.config/xfce4;
     mkdir -p ~/.config/xfce4/xfconf;
@@ -143,7 +160,7 @@ function webbrowser_menu {
  case $option in
  1a ) sudo apt update; sudo apt -y install firefox-esr; printf "\n\n";;
  1b ) sudo apt update; sudo apt -y install firefox; printf "\n\n";;
- 1c ) sudo yum install firefox; printf "\n\n";;
+ 1c ) sudo yum -y install firefox; printf "\n\n";;
  2 ) sudo snap install chromium; printf "\n\n";;
  3 ) sudo snap install falkon --edge; printf "\n\n";;
  m ) clear; installers_menu;;
@@ -207,7 +224,7 @@ function systemtools_menu {
  done
 }
 function cliutils_menu {
- printf "\n${MAGENTA}System Tools Menu${NC}\n\n"
+ printf "\n${MAGENTA}CLI Tools Menu${NC}\n\n"
  option=0
  until [ "$option" = "x" ]; do
  echo "  1a.) Install htop (Debian 9, Ubuntu 18.04)"
@@ -242,7 +259,7 @@ function cliutils_menu {
  done
 }
 function dev_menu {
- printf "\n${MAGENTA}Web Browsers Menu${NC}\n\n"
+ printf "\n${MAGENTA}Development Menu${NC}\n\n"
  option=0
  until [ "$option" = "x" ]; do
  echo "  1a.) Install Git (Debian, Ubuntu)"
@@ -262,6 +279,27 @@ function dev_menu {
  2a ) sudo apt install git-all; printf "\n\n";;
  2b ) sudo dnf install git-all; printf "\n\n";;
  2 ) sudo snap install vscode --classic; printf "\n\n";;
+ m ) clear; installers_menu;;
+ x ) clear; exit;;
+ * ) printf "${RED}Please enter a valid number${NC}\n\n";; 
+ esac
+ done
+}
+function theme_menu {
+ printf "\n${MAGENTA}Theme Menu${NC}\n\n"
+ option=0
+ until [ "$option" = "x" ]; do
+ echo "  1.) Liberation Fonts (CentOS 7)"
+ echo "  2.) Gnome Themes (CentOS 7)"
+ echo "  m.) Main installers menu"
+ echo "  x.) Quit"
+
+ printf "\n${MAGENTA}Enter choice:${NC}\n\n"
+ read option
+ echo ""
+ case $option in
+ 1 ) sudo yum -y install liberation-fonts; printf "\n\n";;
+ 2 ) sudo yum -y install gnome-themes-standard; printf "\n\n";;
  m ) clear; installers_menu;;
  x ) clear; exit;;
  * ) printf "${RED}Please enter a valid number${NC}\n\n";; 
