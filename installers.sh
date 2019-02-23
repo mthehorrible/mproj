@@ -319,6 +319,7 @@ function installers_menu {
  echo "  7.) System Tools"
  echo "  8.) Command Line Utilities"
  echo "  9.) Development Tools"
+ echo "  10.) Theming"
  echo "  m.) Main Menu"
  echo "  x.) Quit"
  
@@ -335,6 +336,7 @@ function installers_menu {
  7 ) clear; systemtools_menu;;
  8 ) clear; cliutils_menu;;
  9 ) clear; dev_menu;;
+ 10 ) clear; theme_menu;;
  m ) clear; ./mproj.sh; exit;;
  x ) clear; exit;;
  * ) printf "${RED}Please enter a valid number${NC}\n\n";; 
