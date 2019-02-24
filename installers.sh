@@ -40,7 +40,7 @@ function terminal_emulators_menu {
  until [ "$option" = "x" ]; do
  echo "  1.) Install lxterminal (Debian 9, Ubuntu 18.04)"
  echo "  2a.) Install terminator (Debian 9, Ubuntu 18.04)"
- echo "  2b.) Install terminator (CentOS 7)"
+ echo "  2b.) Install terminator (CentOS 7 [EPEL])"
  echo "  3.) Install guake (Debian 9, Ubuntu 18.04)"
  echo "  m.) Main installers menu"
  echo "  x.) Quit"
@@ -79,10 +79,10 @@ function texted_menu {
  option=0
  until [ "$option" = "x" ]; do
  echo "  1.) Install Leafpad (Debian 9, Ubuntu 18.04)"
- echo "  2.) Install Mousepad (CentOS 7)"
+ echo "  2.) Install Mousepad (CentOS 7 [EPEL])"
  echo "  3a.) Install Zim Wiki (Debian 9, Ubuntu 18.04)"
  echo "  3a.) Install Zim Wiki (CentOS 7 EPEL)"
- echo "  4.) Install Geany (CentOS 7)"
+ echo "  4.) Install Geany (CentOS 7 [EPEL])"
  echo "  m.) Main installers menu"
  echo "  x.) Quit"
 
@@ -114,7 +114,7 @@ function fileman_menu {
  option=0
  until [ "$option" = "x" ]; do
  echo "  1a.) Install Thunar (Debian 9, Ubuntu 18.04)"
- echo "  1b.) Install Thunar (CentOS 7)"
+ echo "  1b.) Install Thunar (CentOS 7 [EPEL])"
  echo "  m.) Main installers menu"
  echo "  x.) Quit"
 
@@ -203,11 +203,12 @@ function systemtools_menu {
  option=0
  until [ "$option" = "x" ]; do
  echo "  1a.) Install gparted (Debian 9, Ubuntu 18.04)"
- echo "  1b.) Install gparted (CentOS 7)"
+ echo "  1b.) Install gparted (CentOS 7 [EPEL])"
  echo "  2a.) Install OpenSSH server (Debian 9, Ubuntu 18.04)"
  echo "  2b.) Install OpenSSH server (Arch)"
  echo "  3a.) Install hardinfo (Debian 9, Ubuntu 18.04)"
- echo "  3b.) Install hardinfo (CentOS 7)"
+ echo "  3b.) Install hardinfo (CentOS 7 [EPEL])"
+ echo "  4.) Install EPEL Repo (CentOS 7)"
  echo "  m.) Main installers menu"
  echo "  x.) Quit"
 
@@ -221,6 +222,7 @@ function systemtools_menu {
  2b ) sudo pacman install openssh; sudo systemctl start sshd.service; sudo systemctl enable sshd.service; printf "\n\n";;
  3a ) sudo apt update; sudo apt -y install hardinfo; printf "\n\n";;
  3b ) sudo yum -y install hardinfo; printf "\n\n";;
+ 4 ) sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm; printf "\n\n";;
  m ) clear; installers_menu;;
  x ) clear; exit;;
  * ) printf "${RED}Please enter a valid number${NC}\n\n";; 
@@ -232,12 +234,14 @@ function cliutils_menu {
  option=0
  until [ "$option" = "x" ]; do
  echo "  1a.) Install htop (Debian 9, Ubuntu 18.04)"
- echo "  1b.) Install htop (CentOS 7)"
+ echo "  1b.) Install htop (CentOS 7 [EPEL])"
  echo "  2a.) Install screenfetch (Debian 9, Ubuntu 18.04)"
  echo "  2b.) Install screenfetch (CentOS 7)"
  echo "  3.) Install neofetch (Debian 9, Ubuntu 18.04)"
  echo "  4.) Install dnsutils (Debian 9, Ubuntu 18.04)"
  echo "  5.) Install bind-utils (CentOS 7)"
+ echo "  6a.) Install dislocker (Ubuntu 18.04)"
+ echo "  6b.) Install dislocker (Fedora 29)"
  echo "  m.) Main installers menu"
  echo "  x.) Quit"
 
@@ -245,17 +249,19 @@ function cliutils_menu {
  read option
  echo ""
  case $option in
- 1a ) sudo apt update; sudo apt install htop; printf "\n\n";;
- 1b ) sudo yum install htop; printf "\n\n";;
- 2a ) sudo apt update; sudo apt install screenfetch; printf "\n\n";;
- 2b ) sudo yum install git; 
+ 1a ) sudo apt update; sudo apt -y install htop; printf "\n\n";;
+ 1b ) sudo yum -y install htop; printf "\n\n";;
+ 2a ) sudo apt update; sudo apt -yinstall screenfetch; printf "\n\n";;
+ 2b ) sudo yum -y install git; 
         git clone git://github.com/KittyKatt/screenFetch.git screenfetch;
         sudo cp screenfetch/screenfetch-dev /usr/bin/screenfetch;
         sudo chmod +x /usr/bin/screenfetch;
         printf "\n\n";;
- 3 ) sudo apt update; sudo apt install neofetch; printf "\n\n";;
- 4 ) sudo apt update; sudo apt install dnsutils; printf "\n\n";;
- 5 ) sudo yum install bind-utils; printf "\n\n";;
+ 3 ) sudo apt update; sudo apt -y install neofetch; printf "\n\n";;
+ 4 ) sudo apt update; sudo apt -y install dnsutils; printf "\n\n";;
+ 5 ) sudo yum -y install bind-utils; printf "\n\n";;
+ 6a ) sudo apt update; sudo apt -y install dislocker; printf "\n\n";;
+ 6b ) sudo dnf -y install dislocker fuse-dislocker; printf "\n\n";;
  m ) clear; installers_menu;;
  x ) clear; exit;;
  * ) printf "${RED}Please enter a valid number${NC}\n\n";; 
@@ -267,9 +273,10 @@ function dev_menu {
  option=0
  until [ "$option" = "x" ]; do
  echo "  1a.) Install Git (Debian, Ubuntu)"
- echo "  1b.) Install Git (Fedora)"
+ echo "  1b.) Install Git (CentOS 7)"
+ echo "  1c.) Install Git (Fedora 29)"
  echo "  2a.) Install Git-All (Debian, Ubuntu)"
- echo "  2b.) Install Git-All (Fedora)"
+ echo "  2b.) Install Git-All (Fedora 29)"
  echo "  2.) Visual Code Studio (Snap)"
  echo "  m.) Main installers menu"
  echo "  x.) Quit"
@@ -279,7 +286,8 @@ function dev_menu {
  echo ""
  case $option in
  1a ) sudo apt install git; printf "\n\n";;
- 1b ) sudo dnf install git; printf "\n\n";;
+ 1b ) sudo yum install git; printf "\n\n";;
+ 1c ) sudo dnf install git; printf "\n\n";;
  2a ) sudo apt install git-all; printf "\n\n";;
  2b ) sudo dnf install git-all; printf "\n\n";;
  2 ) sudo snap install vscode --classic; printf "\n\n";;
