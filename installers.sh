@@ -14,7 +14,7 @@ function wm_menu {
  option=0
  until [ "$option" = "x" ]; do
  echo "  1a.) Install Fluxbox (Debian 9, Ubuntu 18.04)"
- echo "  1b.) Install Fluxbox (CentOS 7)"
+ echo "  1b.) Install Fluxbox (CentOS 7 [EPEL])"
  echo "  2.) Install Openbox (Debian 9, Ubuntu 18.04)"
  echo "  3.) Install JWM (Ubuntu 18.04)"
  echo "  m.) Main installers menu"
@@ -209,6 +209,7 @@ function systemtools_menu {
  echo "  3a.) Install hardinfo (Debian 9, Ubuntu 18.04)"
  echo "  3b.) Install hardinfo (CentOS 7 [EPEL])"
  echo "  4.) Install EPEL Repo (CentOS 7)"
+ echo "  5.) Install Virt-Manager (CentOS 7)"
  echo "  m.) Main installers menu"
  echo "  x.) Quit"
 
@@ -223,6 +224,7 @@ function systemtools_menu {
  3a ) sudo apt update; sudo apt -y install hardinfo; printf "\n\n";;
  3b ) sudo yum -y install hardinfo; printf "\n\n";;
  4 ) sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm; printf "\n\n";;
+ 5 ) sudo yum -y install virt-manager; printf "\n\n";;
  m ) clear; installers_menu;;
  x ) clear; exit;;
  * ) printf "${RED}Please enter a valid number${NC}\n\n";; 
