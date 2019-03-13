@@ -129,7 +129,7 @@ function fileman_menu {
     mkdir -p ~/.config/xfce4/xfconf/xfce-perchannel-xml;
     cp ./settings/thunar.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml;
     printf "\n\n";;
- 1b ) sudo yum -y install thunar gvfs-client gvfs-smb gvfs-fuse;
+ 1b ) sudo yum -y install thunar samba gvfs-client gvfs-smb gvfs-fuse;
     mkdir -p ~/.config;
     mkdir -p ~/.config/xfce4;
     mkdir -p ~/.config/xfce4/xfconf;
@@ -146,11 +146,14 @@ function webbrowser_menu {
  printf "\n${MAGENTA}Web Browsers Menu${NC}\n\n"
  option=0
  until [ "$option" = "x" ]; do
- echo "  1a.) Install Firefox (Debian 9)"
- echo "  1b.) Install Firefox (Ubuntu 18.04)"
- echo "  1c.) Install Firefox (CentOS 7)"
+ echo "  1a.) Install Firefox (Snap)"
+ echo "  1b.) Install Firefox (Debian 9)"
+ echo "  1c.) Install Firefox (Ubuntu 18.04)"
+ echo "  1d.) Install Firefox (CentOS 7)"
  echo "  2.) Install Chromium (Snap)"
  echo "  3.) Install Falkon (Snap)"
+ echo "  4.) Install Brave (Snap)"
+ echo "  4.) Install Opera (Snap)"
  echo "  m.) Main installers menu"
  echo "  x.) Quit"
 
@@ -158,11 +161,14 @@ function webbrowser_menu {
  read option
  echo ""
  case $option in
- 1a ) sudo apt update; sudo apt -y install firefox-esr; printf "\n\n";;
- 1b ) sudo apt update; sudo apt -y install firefox; printf "\n\n";;
- 1c ) sudo yum -y install firefox; printf "\n\n";;
+ 1a ) sudo snap install firefox; printf "\n\n";;
+ 1b ) sudo apt update; sudo apt -y install firefox-esr; printf "\n\n";;
+ 1c ) sudo apt update; sudo apt -y install firefox; printf "\n\n";;
+ 1d ) sudo yum -y install firefox; printf "\n\n";;
  2 ) sudo snap install chromium; printf "\n\n";;
- 3 ) sudo snap install falkon --edge; printf "\n\n";;
+ 3 ) sudo snap install falkon; printf "\n\n";;
+ 4 ) sudo snap install brave; printf "\n\n";;
+ 5 ) sudo snap install opera; printf "\n\n";;
  m ) clear; installers_menu;;
  x ) clear; exit;;
  * ) printf "${RED}Please enter a valid number${NC}\n\n";; 
@@ -224,7 +230,7 @@ function systemtools_menu {
  3a ) sudo apt update; sudo apt -y install hardinfo; printf "\n\n";;
  3b ) sudo yum -y install hardinfo; printf "\n\n";;
  4 ) sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm; printf "\n\n";;
- 5 ) sudo yum -y install virt-manager; printf "\n\n";;
+ 5 ) sudo yum -y install virt-manager openssh-askpass; printf "\n\n";;
  m ) clear; installers_menu;;
  x ) clear; exit;;
  * ) printf "${RED}Please enter a valid number${NC}\n\n";; 
