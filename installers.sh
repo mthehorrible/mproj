@@ -153,7 +153,7 @@ function webbrowser_menu {
  echo "  2.) Install Chromium (Snap)"
  echo "  3.) Install Falkon (Snap)"
  echo "  4.) Install Brave (Snap)"
- echo "  4.) Install Opera (Snap)"
+ echo "  5.) Install Opera (Snap)"
  echo "  m.) Main installers menu"
  echo "  x.) Quit"
 
